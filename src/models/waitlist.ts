@@ -1,8 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
-const userModel = new Schema({
+const waitlistModel = new Schema({
   email: String,
   name: String,
 });
 
-const User = mongoose.model("User", userModel);
+const WaitList = mongoose.model("Waitlist", waitlistModel);
+
+export default WaitList;
