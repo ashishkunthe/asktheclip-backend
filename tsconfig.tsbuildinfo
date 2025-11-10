@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/models/waitlist.ts","./src/routes/waitlist.route.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/models/user.ts","./src/models/waitlist.ts","./src/routes/auth.route.ts","./src/routes/waitlist.route.ts"],"version":"5.9.3"}

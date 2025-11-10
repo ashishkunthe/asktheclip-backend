@@ -5,6 +5,7 @@ import cors from "cors";
 
 // route imports
 import waitlistRoute from "./routes/waitlist.route";
+import authRoutes from "./routes/auth.route";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/waitlist", waitlistRoute);
+app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT as string;
 const MongoDBURI = process.env.MongoDBURI as string;
