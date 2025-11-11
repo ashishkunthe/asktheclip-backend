@@ -1,7 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+interface RequestExtended extends Request {
+  userId: string;
+}
+
+interface TokenPayload {
+  userId: string;
+}
+
+const authMiddleware = (
+  req: RequestExtended,
+  res: Response,
+  next: NextFunction
+) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -9,8 +21,11 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-    req.user = decoded;
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    ) as TokenPayload;
+    req.userId = decoded.userId;
     next();
   } catch {
     res.status(403).json({ message: "Invalid token" });
